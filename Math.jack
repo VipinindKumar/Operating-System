@@ -35,6 +35,12 @@ class Math {
 
     /** Returns the absolute value of x. */
     function int abs(int x) {
+        if (x < 0) {
+            return -x;
+        }
+        else {
+            return x;
+        }
     }
     
     /** Returns true if the j-th bit of the integer x is 1, false otherwise */
@@ -71,6 +77,7 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
+        
     }
 
     /** Returns the integer part of the square root of x. */
