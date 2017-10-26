@@ -11,6 +11,7 @@ class Math {
 
     /** Initializes the library. */
     function void init() {
+        
     }
 
     /** Returns the absolute value of x. */
@@ -23,6 +24,21 @@ class Math {
      *  the Jack expressions x*y and multiply(x,y) return the same value.
      */
     function int multiply(int x, int y) {
+        var int sum, shiftedX, i;
+        
+        let sum = 0;
+        let shiftedX = x;
+        let i = 0;
+        
+        while (i < 16) {
+            // Add the shifted value of x to sum, when corresponding y bit is 1
+            if (bit(y, i)) {
+                sum = sum + shiftedX;
+            }
+            // Shift x by single bit
+            shiftedX = shiftedX + shiftedX;
+        }
+        return sum;
     }
 
     /** Returns the integer part of x/y.
