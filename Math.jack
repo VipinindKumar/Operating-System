@@ -8,14 +8,38 @@
  * Note: Jack compilers implement multiplication and division using OS method calls.
  */
 class Math {
-
+    
+    static Array twoToThe;
+    
     /** Initializes the library. */
     function void init() {
+        let twoToThe = Array.new(16);
         
+        twoToThe[0] = 1;
+        twoToThe[1] = 2 * twoToThe[0];
+        twoToThe[2] = 2 * twoToThe[1];
+        twoToThe[3] = 2 * twoToThe[2];
+        twoToThe[4] = 2 * twoToThe[3];
+        twoToThe[5] = 2 * twoToThe[4];
+        twoToThe[6] = 2 * twoToThe[5];
+        twoToThe[7] = 2 * twoToThe[6];
+        twoToThe[8] = 2 * twoToThe[7];
+        twoToThe[9] = 2 * twoToThe[8];
+        twoToThe[10] = 2 * twoToThe[9];
+        twoToThe[11] = 2 * twoToThe[10];
+        twoToThe[12] = 2 * twoToThe[11];
+        twoToThe[13] = 2 * twoToThe[12];
+        twoToThe[14] = 2 * twoToThe[13];
+        twoToThe[15] = 2 * twoToThe[14];
     }
 
     /** Returns the absolute value of x. */
     function int abs(int x) {
+    }
+    
+    /** Returns true if the j-th bit of the integer x is 1, false otherwise */
+    function boolean bit(int x, int j) {
+        return ~(x & twoToThe[j])
     }
 
     /** Returns the product of x and y. 
