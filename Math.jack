@@ -67,6 +67,8 @@ class Math {
             }
             // Shift x by single bit
             shiftedX = shiftedX + shiftedX;
+			
+			let i = i + 1;
         }
         return sum;
     }
