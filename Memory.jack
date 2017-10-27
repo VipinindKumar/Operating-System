@@ -9,6 +9,9 @@
  * consists of 32,768 words, each holding a 16-bit binary number.
  */ 
 class Memory {
+	
+	static Array ram, heap;
+	static int freeList, lastSeg;
 
     /** Initializes the class. */
     function void init() {
