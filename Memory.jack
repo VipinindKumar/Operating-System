@@ -38,6 +38,17 @@ class Memory {
     /** Finds an available RAM block of the given size and returns
      *  a reference to its base address. */
     function int alloc(int size) {
+		var int counter, bestFit;
+		
+		let counter = freeList;
+		
+		// stop at null
+		while ~(counter = 0) {
+			// if a segment is possible
+			if (~(counter[1] < (size + 2))) {
+				let bestFit = counter;
+			}
+		}
     }
 
     /** De-allocates the given object (cast as an array) by making
