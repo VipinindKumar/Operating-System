@@ -47,14 +47,8 @@ class Memory {
 		while ~(current = 0) {
 			// if a segment is possible
 			if (~(current[1] < (size + 2))) {
-				// if firstfit segment is encurrented, then set the bestFit to it
+				// if firstfit segment is encountered, then set the bestFit to it
 				if (bestFitsize = 0) {
-					let bestFit = current;
-					let bestFitsize = current[1];
-				}
-				
-				// if the current segment is better fit then, set bestFit to it
-				if (current[1] < bestFitsize) {
 					let bestFit = current;
 					let bestFitsize = current[1];
 				}
@@ -66,6 +60,12 @@ class Memory {
 					
 					let break = true;
 				}
+				
+				// if the current segment is better fit then, set bestFit to it
+				if (current[1] < bestFitsize) {
+					let bestFit = current;
+					let bestFitsize = current[1];
+				}
 			}
 				
 			// update the current value
@@ -76,7 +76,8 @@ class Memory {
 			}
 		}
 		
-		//!!! what to do? after finding the segment, (cut the segment?)
+		// set block to needed part of the bestFit segment
+		
 		
     }
 
