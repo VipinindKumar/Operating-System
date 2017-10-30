@@ -62,7 +62,7 @@ class Math {
         
         while (i < 16) {
             // Add the shifted value of x to sum, when corresponding y bit is 1
-            if (bit(y, i)) {
+            if (Math.bit(y, i)) {
                 sum = sum + shiftedX;
             }
             // Shift x by single bit
