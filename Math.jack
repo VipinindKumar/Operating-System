@@ -65,10 +65,10 @@ class Math {
         while (i < 16) {
             // Add the shifted value of x to sum, when corresponding y bit is 1
             if (Math.bit(y, i)) {
-                sum = sum + shiftedX;
+                let sum = sum + shiftedX;
             }
             // Shift x by single bit
-            shiftedX = shiftedX + shiftedX;
+            let shiftedX = shiftedX + shiftedX;
 			
 			let i = i + 1;
         }
@@ -84,10 +84,7 @@ class Math {
         var int q, result;
 		var boolean changeSign;
 		
-		if ((y > x) | (y < 0)) {
-			return 0;
-		}
-		
+		// figure out the sign of the result
 		if (((x < 0) & ~(y < 0)) | (~(x < 0) & (y < 0))) {
 			let changeSign = true;
 		}
@@ -95,10 +92,23 @@ class Math {
 			let changeSign = false;
 		}
 		
+		// Operate on the absolute value of the integers
 		let x = Math.abs(x);
 		let y = Math.abs(y);
 		
-		let q = Math.divide(x, y+y);
+		// if the denominator is bigger, the result of the integer division is 0
+		if ((y > x)) {
+			return 0;
+		}
+		
+		// if the y value is susceptible to becoming negative(32768 and above)
+		// then set q to 0 else evaluate divide(x, 2*y)
+		if (y < 16384) {
+			let q = Math.divide(x, y+y);
+		}
+		else {
+			let q = 0;
+		}
 		
 		if ((x - q*(y+y)) < y) {
 			let result = q + q;
@@ -107,6 +117,7 @@ class Math {
 			let result = q + q + 1;
 		}
 		
+		// Flip the sign of the result if necessary
 		if (changeSign) {
 			return -result;
 		}
