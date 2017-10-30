@@ -82,6 +82,10 @@ class Math {
         var int q, result;
 		var boolean changeSign;
 		
+		if ((y > x) | (y < 0)) {
+			return 0;
+		}
+		
 		if (((x < 0) & ~(y < 0)) | (~(x < 0) & (y < 0))) {
 			let changeSign = true;
 		}
@@ -89,20 +93,16 @@ class Math {
 			let changeSign = false;
 		}
 		
-		let x = abs(x);
-		let y = abs(y);
+		let x = Math.abs(x);
+		let y = Math.abs(y);
 		
-		if ((y > x) & (y < 0)) {
-			return 0;
-		}
+		let q = Math.divide(x, y+y);
 		
-		let q = divide(x, 2*y);
-		
-		if ((x - 2*q*y) < y) {
-			let result = 2*q;
+		if ((x - q*(y+y)) < y) {
+			let result = q + q;
 		}
 		else {
-			let result = 2*q + 1;
+			let result = q + q + 1;
 		}
 		
 		if (changeSign) {
