@@ -96,26 +96,7 @@ class Math {
 		let x = Math.abs(x);
 		let y = Math.abs(y);
 		
-		// if the denominator is bigger, the result of the integer division is 0
-		if ((y > x)) {
-			return 0;
-		}
-		
-		// if the y value is susceptible to becoming negative(32768 and above)
-		// then set q to 0 else evaluate divide(x, 2*y)
-		if (y < 16384) {
-			let q = Math.divide(x, y+y);
-		}
-		else {
-			let q = 0;
-		}
-		
-		if ((x - q*(y+y)) < y) {
-			let result = q + q;
-		}
-		else {
-			let result = q + q + 1;
-		}
+		let result = Math.udiv(x, y);
 		
 		// Flip the sign of the result if necessary
 		if (changeSign) {
@@ -125,16 +106,44 @@ class Math {
 			return result;
 		}
     }
+	
+	/** Helper function for divide(), to perform the division */
+	function int udiv(int x, int y) {
+		var int q;
+		
+		// if the denominator is bigger, the result of the integer division is 0
+		if ((y > x)) {
+			return 0;
+		}
+		
+		// if the y value is susceptible to becoming negative(32768 and above)
+		// then set q to 0 else evaluate divide(x, 2*y)
+		if (y < 16384) {
+			let q = Math.udiv(x, y+y);
+		}
+		else {
+			let q = 0;
+		}
+		
+		if ((x - (q*(y+y))) < y) {
+			return q + q;
+		}
+		else {
+			return q + q + 1;
+		}
+	}
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
-		var int y, j;
+		var int y, j, yplus2;
 		
 		let y = 0;
 		let j = 7;  // (n/2 - 1)
 		
 		while (~(j < 0)) {
-			if (~(((y + twoToThe[j])*(y + twoToThe[j])) > x) & (((y + twoToThe[j])*(y + twoToThe[j])) > 0)) {
+			let yplus2 = (y + twoToThe[j])*(y + twoToThe[j]);
+			
+			if ((~(yplus2 > x)) & (~(yplus2 < 0))) {
 				let y = y + twoToThe[j];
 			}
 			
