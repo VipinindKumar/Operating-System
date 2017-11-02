@@ -16,7 +16,118 @@ class Memory {
     /** Initializes the class. */
     function void init() {
 		let ram = 0;
+		// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Memory.jack
+
+/**
+ * This library provides two services: direct access to the computer's main
+ * memory (RAM), and allocation and recycling of memory blocks. The Hack RAM
+ * consists of 32,768 words, each holding a 16-bit binary number.
+ */ 
+class Memory {
+	
+	static Array ram, heap;
+	static int freeList;
+	
+    /** Initializes the class. */
+    function void init() {
+		let ram = 0;
 		
+		let heap = 2048;
+		let freeList = 2048;
+		
+		let heap[0] = 0;      // next
+		let heap[1] = 14335;  // length
+		
+		return;
+    }
+
+    /** Returns the RAM value at the given address. */
+    function int peek(int address) {
+		return ram[address];
+    }
+
+    /** Sets the RAM value at the given address to the given value. */
+    function void poke(int address, int value) {
+		let ram[address] = value;
+		return;
+    }
+
+    /** Finds an available RAM block of the given size and returns
+     *  a reference to its base address. */
+    function int alloc(int size) {
+		var int current, bestFit, bestFitsize, block;
+		var boolean break;
+		
+		let current = freeList;
+		let bestFitsize = 0;
+		let break = false;
+		
+		// stop at null
+		while (~(current = 0)) {
+			// if a segment is possible
+			if (~(current[1] < (size + 2))) {
+				// if firstfit segment is encurrented, then set the bestFit to it
+				if (bestFitsize = 0) {
+					let bestFit = current;
+					let bestFitsize = current[1];
+				}
+				
+				// if the current segment is better fit, then set bestFit to it
+				if (current[1] < bestFitsize) {
+					let bestFit = current;
+					let bestFitsize = current[1];
+				}
+				
+				// if a segment is found of the exact size+2, then break the loop, after setting bestFit
+				if (current[1] = size + 2) {
+					let bestFit = current;
+					let bestFitsize = current[1];
+					
+					let break = true;
+				}
+			}
+				
+			// update the current value
+			let current = current[0];
+			if (break) {
+				// set current to 0(null), to break the loop
+				let current = 0;
+			}
+		}
+		
+		// create a block out of the bestFit segment
+		let block = bestFit + (bestFitsize - size + 2 + 2);
+		
+		// add the size of the block in the block
+		let block[1] = size;
+		
+		return;
+    }
+
+    /** De-allocates the given object (cast as an array) by making
+     *  it available for future allocations. */
+    function void deAlloc(Array o) {
+		var int current;
+		
+		let current = freeList;
+		
+		// put the Array at the end of the freeList
+		// find the last segment of the freeList
+		while (~(current[0] = 0)) {
+			let current = current[0];
+		}
+		
+		// set o segment to the end of the freeList
+		let current[0] = o;
+		let o[0] = 0;
+		
+		return;
+    }    
+}
+
 		let heap = 2048;
 		let freeList = 2048;
 		
