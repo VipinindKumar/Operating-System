@@ -11,7 +11,7 @@
 class Memory {
 	
 	static Array ram, heap;
-	static int freeList, lastSeg;
+	static int freeList;
 
     /** Initializes the class. */
     function void init() {
@@ -19,7 +19,6 @@ class Memory {
 		
 		let heap = 2048;
 		let freeList = 2048;
-		let lastSeg = 2048;
 		
 		let heap[0] = 0;      // next
 		let heap[1] = 14335;  // length
