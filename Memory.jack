@@ -17,11 +17,10 @@ class Memory {
     function void init() {
 		let ram = 0;
 		
-		let heap = 2048;
 		let freeList = 2048;
 		
-		let heap[0] = 0;      // next
-		let heap[1] = 14335;  // length
+		let ram[2048] = 0;      // next
+		let ram[2049] = 14335;  // length
 		
 		return;
     }
