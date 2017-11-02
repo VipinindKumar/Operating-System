@@ -86,7 +86,7 @@ class Memory {
 		// add the size of the block in the block
 		let block[1] = size;
 		
-		return;
+		return block;
     }
 
     /** De-allocates the given object (cast as an array) by making
