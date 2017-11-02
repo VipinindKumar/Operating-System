@@ -10,7 +10,7 @@
  */ 
 class Memory {
 	
-	static Array ram, heap;
+	static Array ram;
 	static int freeList;
 	
     /** Initializes the class. */
@@ -63,7 +63,7 @@ class Memory {
 				}
 				
 				// if a segment is found of the exact size+2, then break the loop, after setting bestFit
-				if (current[1] = size + 2) {
+				if (current[1] = (size + 2)) {
 					let bestFit = current;
 					let bestFitsize = current[1];
 					
@@ -80,7 +80,7 @@ class Memory {
 		}
 		
 		// create a block out of the bestFit segment
-		let block = bestFit + (bestFitsize - size + 2 + 2);
+		let block = (bestFit + (bestFitsize - size + 2 + 2));
 		
 		// add the size of the block in the block
 		let block[1] = size;
