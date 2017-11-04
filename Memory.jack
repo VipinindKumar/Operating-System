@@ -80,10 +80,13 @@ class Memory {
 		}
 		
 		// create a block out of the bestFit segment
-		let block = (bestFit + (bestFitsize - size + 2 + 2));
+		let block = (bestFit + (bestFitsize - (size + 2) + 2));
 		
 		// add the size of the block in the block
 		let block[1] = size;
+		
+		// update the freeList segment
+		let bestFit[1] = 
 		
 		return block;
     }
