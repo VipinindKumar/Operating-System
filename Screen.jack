@@ -12,9 +12,11 @@
 class Screen {
 	static int twoToThe;
 	static boolean color;
+	static Array screen;
 
     /** Initializes the Screen. */
     function void init() {
+		let screen = 16384;
         let twoToThe = Array.new(16);
         
         let twoToThe[0] = 1;
