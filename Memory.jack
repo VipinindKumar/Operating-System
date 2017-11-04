@@ -85,8 +85,8 @@ class Memory {
 		// add the size of the block in the block
 		let block[1] = size;
 		
-		// update the freeList segment
-		let bestFit[1] = 
+		// update the freeList segment size
+		let bestFit[1] = bestFit[1] - (size + 2);
 		
 		return block;
     }
