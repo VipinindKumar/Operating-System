@@ -39,6 +39,15 @@ class Screen {
 
     /** Erases the entire screen. */
     function void clearScreen() {
+        var int i;
+		
+		// loop through every 16-bit register in screen and set it to 0
+		while (i < 8192) {
+			let screen[i] = 0;
+			let i = i + 1;
+		}
+		
+		return;
     }
 
     /** Sets the current color, to be used for all subsequent drawXXX commands.
