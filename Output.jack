@@ -21,6 +21,11 @@ class Output {
 
     /** Initializes the screen, and locates the cursor at the screen's top-left. */
     function void init() {
+        // clear the screen
+        do Screen.clearScreen();
+        
+        // positions the cursor at the top left corner of the screen
+        do Output.moveCursor(0, 0);
     }
 
     // Initializes the character map array
@@ -35,7 +40,7 @@ class Output {
         // Assigns the bitmap for each character in the charachter set.
         // The first parameter is the character index, the next 11 numbers
         // are the values of each row in the frame that represents this character.
-        do Output.create(32,0,0,0,0,0,0,0,0,0,0,0);          //
+        do Output.create(32,0,0,0,0,0,0,0,0,0,0,0);          // [space]
         do Output.create(33,12,30,30,30,12,12,0,12,12,0,0);  // !
         do Output.create(34,54,54,20,0,0,0,0,0,0,0,0);       // "
         do Output.create(35,0,18,18,63,18,18,63,18,18,0,0);  // #
