@@ -270,7 +270,7 @@ class Output {
     function void println() {
         let cursorx = 0;
         
-        if (cursory < 23) {
+        if (cursory < 22) {
             let cursory = cursory + 1;
         }
         else {
