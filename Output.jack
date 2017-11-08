@@ -17,7 +17,7 @@
 class Output {
 
     // Character map for displaying characters
-    static Array charMaps;
+    static Array charMaps, screen, clearmap;
     static int cursorx, cursory;
 
     /** Initializes the screen, and locates the cursor at the screen's top-left. */
@@ -27,6 +27,13 @@ class Output {
         
         // positions the cursor at the top left corner of the screen
         do Output.moveCursor(0, 0);
+        
+        let screen = 16384;
+        let clearmap = Array.new(2);
+        let clearmap[0] = -256;
+        let clearmap[1] = 255;
+        
+        do Output.initMap();
     }
 
     // Initializes the character map array
@@ -190,6 +197,46 @@ class Output {
     /** Displays the given character at the cursor location,
      *  and advances the cursor one column forward. */
     function void printChar(char c) {
+        var Array map;
+        var int i, adddr, pos, bitmap;
+        
+        // get the bitmaps for the character
+        let map = Output.getMap(c);
+        
+        // find the first bit location to be manipulated
+        let addr = (cursory * 32 * 11) + (cursorx / 2);
+        
+        // find which part of a 16-bit value register need to be manipulated
+        let pos = cursorx & 1;
+        
+        // write the bitmap to the screen
+        while(i < 11) {
+            let bitmap = map[i];
+            
+            // change orientation of the binary value (exchanging 8-bit values parts),
+            // if pos is 1
+            if (pos = 1) {
+                bitmap = bitmap * 256;
+            }
+            
+            // clear the part where writing and then put bitmap there
+            let screen[addr] = (screen[addr] & clearmap[pos]) | bitmap;
+            
+            // update the addr to the next line and i++
+            let addr = addr + 32;
+            let i = i + 1;
+        }
+        
+        // move the cursor to the next position
+        // if at the end of line, print a new line
+        if (cursorx = 63) {
+            do Output.println();
+        }
+        else {
+            cursorx = cursorx + 1;
+        }
+        
+        return;
     }
 
     /** displays the given string starting at the cursor location,
