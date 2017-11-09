@@ -50,7 +50,7 @@ class Keyboard {
         // waits until a key is pressed
         while (Keyboard.keyPressed() = 0) {}
         
-        let c = keyboard.keyPressed();
+        let c = Keyboard.keyPressed();
         
         // waits until the key is released
         while (~(Keyboard.keyPressed() = 0)) {}
