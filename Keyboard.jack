@@ -7,7 +7,7 @@
  * A library for handling user input from the keyboard.
  */
 class Keyboard {
-    var int keyboard;
+    static int keyboard;
     
     /** Initializes the keyboard. */
     function void init() {
