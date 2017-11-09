@@ -81,7 +81,7 @@ class Keyboard {
                 do Output.backSpace();
             }
             else {
-                let str = str.append(c);
+                let str = str.appendChar(c);
             }
             
             let c = Keyboard.readChar();
