@@ -42,6 +42,19 @@ class Keyboard {
      * of the pressed key.
      */
     function char readChar() {
+        var int c;
+        
+        // waits until a key is pressed
+        while (Keyboard.keyPressed() = 0) {}
+        
+        let c = keyboard.keyPressed();
+        
+        // waits until the key is released
+        while (~(Keyboard.keyPressed() = 0)) {}
+        
+        do Output.printChar(c);
+        
+        return c;
     }
 
     /**								
