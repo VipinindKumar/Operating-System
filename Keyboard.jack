@@ -78,7 +78,6 @@ class Keyboard {
         while (~(c = String.newLine())) {
             if (c = String.backSpace()) {
                 do str.eraseLastChar();
-                do Output.backSpace();
             }
             else {
                 let str = str.appendChar(c);
