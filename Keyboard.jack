@@ -72,7 +72,7 @@ class Keyboard {
         do Output.printString(message);
         
         // allocate arbitrary length string
-        let str = Sting.new(50);
+        let str = String.new(50);
         
         let c = Keyboard.readChar();
         while (~(c = String.newLine())) {
