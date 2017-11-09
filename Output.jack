@@ -260,7 +260,7 @@ class Output {
         var String s;
         
         // convert the integer to string and then print the string
-        let s = String.new(5);
+        let s = String.new(6);
         do s.setInt(i);
         do Output.printString(s);
         do s.dispose();
