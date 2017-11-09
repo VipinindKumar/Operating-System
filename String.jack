@@ -57,6 +57,12 @@ class String {
 
     /** Erases the last character from this string. */
     method void eraseLastChar() {
+        let length = length - 1;
+        
+        // do a backSpace after reducing the length
+        do Output.backSpace();
+        
+        return;
     }
 
     /** Returns the integer value of this string, 
