@@ -125,7 +125,7 @@ class String {
         let lastDigit = val - ((val / 10) * 10);
         
         // find it's ascii value, ie. convert it into it's corresponding character
-        let c = c + 48;
+        let c = lastDigit + 48;
         
         if (val < 10) {
             do appendChar(c);
