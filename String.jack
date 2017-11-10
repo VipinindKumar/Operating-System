@@ -110,6 +110,15 @@ class String {
     method void setInt(int val) {
         var int lastDigit, c;
         
+        //!!! 12345 is converting to as 00000
+        
+        // if the val is negative, then append - character
+        if (val < 0) {
+            do appendChar(45);
+            
+            let val = -val;
+        }
+        
         // separate the last digit of the value
         let lastDigit = val - (val / 10);
         
