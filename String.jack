@@ -69,23 +69,36 @@ class String {
      *  until a non-digit character is detected. */
     method int intValue() {
         var int val, i, d;
+        var boolean neg;
         
         while (i < length) {
-            // do, until a non-digit character is detected
-            if ((str[i] > 47) & (str[i] < 58)) {
-                // convert character into integer value (48 is 0)
-                let d = str[i] - 48;
-                
-                let val = (val * 10) + d;
+            // check if the its a negative number, (- => 45)
+            if ((i = 0) & (str[0] = 45)) {
+                let neg = true;
             }
             else {
-                return val;
+                // do, until a non-digit character is detected
+                if ((str[i] > 47) & (str[i] < 58)) {
+                    // convert character into integer value (48 is 0)
+                    let d = str[i] - 48;
+                    
+                    let val = (val * 10) + d;
+                }
+                else {
+                    // break out of loop
+                    let i = length;
+                }
             }
             
             let i = i + 1;
         }
         
-        return val;
+        if (neg) {
+            return -val;
+        }
+        else {
+            return val;
+        }
     }
 
     /** Sets this string to hold a representation of the given value. */
