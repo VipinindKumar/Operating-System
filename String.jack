@@ -115,7 +115,8 @@ class String {
             let str = str.appendChar(c);
         }
         else {
-            do setInt(val / 10).appendChar(c);
+            do setInt(val / 10);
+			let str = str.appendChar(c);
         }
         
         return;
