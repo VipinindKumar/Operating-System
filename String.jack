@@ -68,9 +68,24 @@ class String {
     /** Returns the integer value of this string, 
      *  until a non-digit character is detected. */
     method int intValue() {
-        var int val, i;
+        var int val, i, d;
         
-        while ()
+        while (i < length) {
+            // do, until a non-digit character is detected
+            if ((str[i] > 47) & (str[i] < 58)) {
+                // convert character into integer value (48 is 0)
+                let d = str[i] - 48;
+                
+                let val = (val * 10) + d;
+            }
+            else {
+                return val;
+            }
+            
+            let i = i + 1;
+        }
+        
+        return val;
     }
 
     /** Sets this string to hold a representation of the given value. */
