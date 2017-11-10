@@ -107,7 +107,6 @@ class String {
 
     /** Sets this string to hold a representation of the given value. */
     method void setInt(int val) {
-        var int lastDigit, c;
         
         let length = 0;
         
@@ -117,6 +116,15 @@ class String {
             
             let val = -val;
         }
+        
+        do int2String(val);
+        
+        return;
+    }
+    
+    /** Helper function for setInt convert a positive integer into it's String representation */
+    method void int2String(int val) {
+        var int lastDigit, c;
         
         // separate the last digit of the value
         let lastDigit = val - ((val / 10) * 10);
@@ -128,7 +136,7 @@ class String {
             do appendChar(c);
         }
         else {
-            do setInt(val / 10);
+            do int2String(val / 10);
 			do appendChar(c);
         }
         
