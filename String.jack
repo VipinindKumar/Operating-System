@@ -68,12 +68,14 @@ class String {
     /** Returns the integer value of this string, 
      *  until a non-digit character is detected. */
     method int intValue() {
+        var int val, i;
+        
+        while ()
     }
 
     /** Sets this string to hold a representation of the given value. */
     method void setInt(int val) {
         var int lastDigit, c;
-        var Array str;
         
         // separate the last digit of the value
         let lastDigit = val - (val / 10);
@@ -82,15 +84,13 @@ class String {
         let c = c + 48;
         
         if (val < 10) {
-            let str = Array.new(6);
             let str = str.appendChar(c);
-            
-            return str;
         }
         else {
-            return setInt(val / 10).appendChar(c);
+            setInt(val / 10).appendChar(c);
         }
         
+        return;
     }
 
     /** Returns the new line character. */
