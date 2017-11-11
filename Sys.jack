@@ -31,11 +31,50 @@ class Sys {
 
     /** Waits approximately duration milliseconds and returns.  */
     function void wait(int duration) {
-        var int i, j;
+        var int i, j, k, l, m, n, o, p, q, r, s, t, u, v;
         
         while(i < duration) {
-            while (j < 200) {
+            /** the 200 is hardware dependent and
+                in my computer comes out to be 416000 iteration
+                which can be achieved by 13 distinct loops each with it's own 32000 iterations */
+            while (j < 32000) {
                 let j = j + 1;
+            }
+			while (k < 32000) {
+                let k = k + 1;
+            }
+			while (l < 32000) {
+                let l = l + 1;
+            }
+			while (m < 32000) {
+                let m = m + 1;
+            }
+			while (n < 32000) {
+                let n = n + 1;
+            }
+			while (o < 32000) {
+                let o = o + 1;
+            }
+			while (p < 32000) {
+                let p = p + 1;
+            }
+			while (q < 32000) {
+                let q = q + 1;
+            }
+			while (r < 32000) {
+                let r = r + 1;
+            }
+			while (s < 32000) {
+                let s = s + 1;
+            }
+			while (t < 32000) {
+                let t = t + 1;
+            }
+			while (u < 32000) {
+                let u = u + 1;
+            }
+			while (v < 32000) {
+                let v = v + 1;
             }
             let i = i + 1;
         }
