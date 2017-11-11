@@ -20,6 +20,8 @@ class Sys {
     /** Halts the program execution. */
     function void halt() {
         while(true) {}
+        
+        return;
     }
 
     /** Waits approximately duration milliseconds and returns.  */
@@ -29,6 +31,8 @@ class Sys {
         while(i < (100 * duration)) {
             let i = i + 1;
         }
+        
+        return;
     }
 
     /** Displays the given error code in the form "ERR<errorCode>",
