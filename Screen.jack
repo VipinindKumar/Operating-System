@@ -159,6 +159,52 @@ class Screen {
         
         return;
     }
+    
+    /** Draws a horizontal line from pixel(x1, y) to pixel(x2, y), using the current color */
+    function void drawHorizontalLine(int x1, int x2, int y) {
+        var int start_addr, end_addr, x1mod16, x2mod16;
+        
+        let x1mod16 = x1 & 15;
+        let x2mod16 = x2 & 15;
+        let start_addr = (y * 32) + (x1 / 16);
+        let end_addr = (y * 32) + (x2 / 16) + (x2mod16 = 0); // need to get to previous bit if x2mod16 is zero
+
+        if(start_addr = end_addr) {   
+            // line starts and ends within the same screen address
+            do Screen.draw_short_horizontal_line(x1, x2, y);
+        }
+        else { 
+            if(~(x1mod16 = 0)) {      
+                // Draw the short start of the line
+                let start_addr = start_addr + 1;
+                do Screen.draw_short_horizontal_line(x1, x1 + 16 - x1mod16, y);
+            }
+            if(~(x2mod16 = 0) ) {     
+                // Draw the short end of the line
+                let end_addr = end_addr - 1;
+                do Screen.draw_short_horizontal_line(x2 - x2mod16, x2, y);
+            }
+            while(~(start_addr > end_addr)) {     
+                // Draw the middle of the line
+                let screen[start_addr] = color;
+                let start_addr = start_addr + 1;
+            }
+        }
+        
+        return;
+    }
+    
+    /** Draws a horizontal line from pixel(x1, y) to pixel(x2, y), using the current color.
+        Used as a helper function for drawHorizontalLine(), to draw short horizontal lines 
+        mostly spanning inside a single bit */
+    function void draw_short_horizontal_line(int x1, int x2, int y) {
+        while (~(x1 > x2)) {
+            do Screen.drawPixel(x1, y);
+            let x1 = x1 + 1;
+        }
+    
+        return;
+    }
 
     /** Draws a filled rectangle whose top left corner is (x1, y1)
      * and bottom right corner is (x2,y2), using the current color. */
