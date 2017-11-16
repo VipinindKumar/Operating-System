@@ -61,7 +61,7 @@ class Screen {
 
     /** Draws the (x,y) pixel, using the current color. */
     function void drawPixel(int x, int y) {
-		var int addr, value;
+		var int addr, mask;
 		
 		let addr = (32 * y) + (x / 16) + 16384;
 		
@@ -69,10 +69,10 @@ class Screen {
 		
 		// set the (x%16)th bit of value to the current color
 		if (color) {
-			let value = value | twoToThe[x - (16 * (x / 16))];
+			let value = value | twoToThe[x & 15];
 		}
 		else {
-			let value = value & (~twoToThe[x - (16 * (x / 16))]);
+			let value = value & (~twoToThe[x & 15]);
 		}
 		
 		do Memory.poke(addr, value);
