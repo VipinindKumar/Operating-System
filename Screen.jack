@@ -113,7 +113,7 @@ class Screen {
 		return;
     }
     
-    /** Draws a diagonal line from pixel(x1, y1) to pixel (x2, y2), using the current color */
+    /** Draws a diagonal line from pixel(x1, y1) to pixel(x2, y2), using the current color */
     function void drawDiagonalLine(int x1, int y1, int x2, int y2, int dx, int dy) {
 		var int a, b, diff, ydir;
         
@@ -139,6 +139,25 @@ class Screen {
 		}
 		
 		return;
+    }
+    
+    /** Draws a vertical line from pixel(x, y1) to pixel(x, y2), using the current color */
+    function void drawVerticalLine( int x, int y1, int y2 ) {
+        var int temp;
+        
+        // Make sure y1 <= y2
+        if( y1 > y2 ) {
+            let temp = y1;
+            let y1 = y2;
+            let y2 = temp;
+        }
+        
+        while(~(y1 > y2)) {
+            do Screen.drawPixel(x, y1);
+            let y1 = y1 + 1;
+        }
+        
+        return;
     }
 
     /** Draws a filled rectangle whose top left corner is (x1, y1)
