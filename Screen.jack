@@ -115,24 +115,30 @@ class Screen {
     
     /** Draws a diagonal line from pixel(x1, y1) to pixel (x2, y2), using the current color */
     function void drawDiagonalLine(int x1, int y1, int x2, int y2, int dx, int dy) {
-		var int a, b, diff;
+		var int a, b, diff, ydir;
+        
+        if( dy < 0 ) {
+            let ydir = -1;
+        }
+        else {
+            let ydir = 1;
+        }
 		
-		let dx = x2 - x1;
-		let dy = y2 - y1;
-		
-		while (~(a > dx) & ~(b > dy)) {
+		while (~(a > dx) & (((ydir = 1) & ~(b > dy)) | ((ydir = -1) & ~(b < dy)))) {
 			do drawPixel((x1 + a), (y1 + b));
 			
 			// decide if need to go right or up
 			if (diff < 0) {
 				let a = a + 1;
-				let diff = diff + dy;
+				let diff = diff + (dy * ydir);
 			}
 			else {
-				let b = b + 1;
+				let b = b + ydir;
 				let diff = diff - dx;
 			}
 		}
+		
+		return;
     }
 
     /** Draws a filled rectangle whose top left corner is (x1, y1)
