@@ -17,6 +17,7 @@ class Screen {
     /** Initializes the Screen. */
     function void init() {
 		let screen = 16384;
+		let color = true;
         let twoToThe = Array.new(16);
         
         let twoToThe[0] = 1;
@@ -176,20 +177,17 @@ class Screen {
         else { 
             if(~(x1mod16 = 0)) {      
                 // Draw the short start of the line
-                do Screen.draw_short_horizontal_line(x1, x1 + 16 - x1mod16, y);
-                
                 let start_addr = start_addr + 1;
+                do Screen.draw_short_horizontal_line(x1, x1 + 16 - x1mod16, y);
             }
             if(~(x2mod16 = 0) ) {     
                 // Draw the short end of the line
-                do Screen.draw_short_horizontal_line(x2 - x2mod16, x2, y);
-                
                 let end_addr = end_addr - 1;
+                do Screen.draw_short_horizontal_line(x2 - x2mod16, x2, y);
             }
             while(~(start_addr > end_addr)) {     
                 // Draw the middle of the line
                 let screen[start_addr] = color;
-                
                 let start_addr = start_addr + 1;
             }
         }
