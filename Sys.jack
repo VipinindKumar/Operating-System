@@ -12,14 +12,14 @@ class Sys {
     function void init() {
         do Memory.init();
         do Math.init();
+        do Screen.init();
         do Output.init();
         do Keyboard.init();
-        do Screen.init();
         
         do Main.main();
         do Sys.halt();
-        
-        return;
+		
+		return;
     }
 
     /** Halts the program execution. */
@@ -34,9 +34,6 @@ class Sys {
         var int i, j, k, l, m, n, o, p, q, r, s, t, u, v;
         
         while(i < duration) {
-            /** the 200 is hardware dependent and
-                in my computer comes out to be 416000 iteration
-                which can be achieved by 13 distinct loops each with it's own 32000 iterations */
             while (j < 32000) {
                 let j = j + 1;
             }
