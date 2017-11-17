@@ -176,17 +176,20 @@ class Screen {
         else { 
             if(~(x1mod16 = 0)) {      
                 // Draw the short start of the line
-                let start_addr = start_addr + 1;
                 do Screen.draw_short_horizontal_line(x1, x1 + 16 - x1mod16, y);
+                
+                let start_addr = start_addr + 1;
             }
             if(~(x2mod16 = 0) ) {     
                 // Draw the short end of the line
-                let end_addr = end_addr - 1;
                 do Screen.draw_short_horizontal_line(x2 - x2mod16, x2, y);
+                
+                let end_addr = end_addr - 1;
             }
             while(~(start_addr > end_addr)) {     
                 // Draw the middle of the line
                 let screen[start_addr] = color;
+                
                 let start_addr = start_addr + 1;
             }
         }
